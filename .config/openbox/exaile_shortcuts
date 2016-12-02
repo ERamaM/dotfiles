@@ -1,0 +1,31 @@
+	<keybind key="S-A-F1">
+	<action name="Execute">
+	<command>~/.scripts/exaile-osd.sh</command>
+	</action>
+	</keybind>
+
+	<keybind key="S-A-F5">
+	<action name="Execute">
+	<command>exaile -t</command>
+	</action>
+	</keybind>
+	<keybind key="S-A-F6">
+	<action name="Execute">
+	<command>exaile -p</command>
+	</action>
+	</keybind>
+	<keybind key="S-A-F7">
+	<action name="Execute">
+	<command>exaile -n</command>
+	</action>
+	</keybind>
+	<keybind key="S-A-F8">
+	<action name="Execute">
+	<command>exaile --stop-after-current</command>
+	</action>
+	</keybind>
+	<keybind key="S-A-F9">
+	<action name="Execute">
+	<command>exaile --toggle-visible</command>
+	</action>
+	</keybind>

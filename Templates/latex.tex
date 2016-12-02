@@ -1,0 +1,334 @@
+\documentclass[a4paper,10pt]{article}
+
+
+%error if activated%\RequirePackage[l2tabu, orthodox]{nag}			%Checks for obsolete LaTeX packages and outdated commands
+
+\usepackage[T1]{fontenc}	%Correct accented characters and copy paste them, also not unexpected results with some characters like pipe
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, es-tabla,es-noindentfirst]{babel}		%http://www.tex-tipografia.com/spanishopt.html
+%\usepackage[spanish, es-tabla]{babel}		%http://www.tex-tipografia.com/spanishopt.html
+				%es-noquotes]{babel}			si caracteres dan problemas
+				%es-noshorthands]{babel}		si caracteres dan todavia problemas
+				%es-noindentfirst]{babel}		para eliminar sangría
+\usepackage[document]{ragged2e}	%centering
+\usepackage{listings}			%highlight code
+	\lstset{breaklines}			%line wrap for listings
+	\newcommand{\lstlistinginput}{\lstinputlisting}		%alias
+\usepackage{courier}		%listings better font
+\usepackage[sorting=none]{biblatex}
+	\addbibresource{bib.bib}
+\usepackage{color}
+\usepackage[table,xcdraw,usenames,dvipsnames]{xcolor}
+%\usepackage{amsmath}		%https://www.sharelatex.com/learn/Aligning_equations_with_amsmath
+%\usepackage{amsfonts}		%Extended set of fonts for use in mathematics
+%\usepackage{afterpage}		%Commands specified in its argument are expanded after the current page is output. EG: \afterpage{\clearpage} and the current page will be filled up with text as usual, but then the \clearpage command will flush out all the floats before the next text page begins
+\usepackage{graphicx}		%Introduces the \includegraphics command, which is needed for inserting figures
+%\usepackage{microtype}		%Improves spacing (words and letters) and more stuff. Load after fonts, because is dependent on this font
+%\usepackage{siunitx}		%SI units
+%\usepackage{xspace}			%Decides whether to insert a space to replace one "eaten" by the command decoder
+%\usepackage{todonotes}		%Mark things to do later
+\usepackage{hyperref}		%\hyperref, \url and \href
+%\usepackage[a4paper]{geometry}	%Margins without needing to remember the particular page dimensions commands. Eg [a4paper], [top=1in, bottom=1.25in, left=1.25in, right=1.25in]
+%\usepackage{cleveref}		%LAST \usepackage in the preamble. If anything else modifies the referencing system (like amsmath) it all goes wrong
+
+%\DisableLigatures{encoding = *, family = *}		%https://en.wikibooks.org/wiki/LaTeX/Text_Formatting#Ligatures
+%\def\spanishoperators{}		%stuff like sin traduced to sen, max to máx, etc
+
+\newcommand\realnumberstyle[1]{}
+
+\makeatletter
+\newcommand{\zebra}[3]{%
+    {\realnumberstyle{#3}}%
+    \begingroup
+    \lst@basicstyle
+    \ifodd\value{lstnumber}%
+        \color{#1}%
+    \else
+        \color{#2}%
+    \fi
+        \rlap{\hspace*{\lst@numbersep}%
+        \color@block{\linewidth}{\ht\strutbox}{\dp\strutbox}%
+        }%
+    \endgroup
+}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%		MORE	ALIASES		%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\lineh}{\rule{\textwidth}{1pt}\hfill\break}
+\newcommand{\linej}{\hfill\break}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%		END BASIC CONF		%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%\definecolor{mygreen}{rgb}{0,0.6,0}
+%\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+
+
+%\renewcommand{\thesubsection}{\thesection.\alph{subsection}}		%change subsection style to letters
+
+
+
+%https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
+
+
+%\lstdefinestyle{html}{
+	%language=HTML,
+%}
+
+%\lstdefinestyle{sql}{
+	%language=sql,
+%}
+
+%\lstdefinestyle{XML}{
+	%language=XML,
+%}
+
+%\lstdefinestyle{Java}{
+	%language=Java,
+%}
+
+%\lstdefinestyle{C}{
+	%language=C,		%for syntax highlighting
+	%emph={int,char,double,float,unsigned},
+	%emphstyle=\color{green},
+%}
+
+%\lstdefinestyle{sh}{
+	%language=sh,
+	%%directivestyle=\color{gray},
+	%emph={local, export, sudo },
+	%emphstyle=\color{green}\bfseries,
+%}
+
+%\lstdefinelanguage{JavaScript}{
+	%keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+	%ndkeywords={class, export, boolean, throw, implements, import, this},
+	%ndkeywordstyle=\color{gray}\bfseries,
+	%identifierstyle=\color{black},
+	%sensitive=false,
+	%comment=[l]{//},
+	%morecomment=[s]{/*}{*/},
+	%morestring=[b]',
+	%morestring=[b]"
+%}
+%\lstdefinestyle{JavaScript}{
+	%language=JavaScript,
+%}
+
+%\lstdefinelanguage{CSS}{
+	%keywords={background-image:,border:,border-top:,border-left:,border-right:,border-bottom:,border-radius:,border-style:,clear:,color:,margin:,margin-top:,margin-left:,margin-right:,margin-bottom:,padding:,flex-direction:,flex-grow:,float:,font:,font-size:,weight:,display:,position:,top:,left:,right:,bottom:,list:,list-style:,style:,border:,size:,space:,min:,width:,text-align:,text-shadow:, transition:, transform:, transition-property:, transition-duration:, transition-timing-function:},
+	%sensitive=true,
+	%morecomment=[l]{//},
+	%morecomment=[s]{/*}{*/},
+	%morestring=[b]',
+	%morestring=[b]",
+	%alsoletter={:},
+	%alsodigit={-}
+%}
+%\lstdefinestyle{CSS}{
+	%language=CSS,
+%}
+
+%\lstdefinelanguage{HTML5}{
+		%language=html,
+		%sensitive=true,
+		%alsoletter={<>=-},
+		%otherkeywords={
+		%% HTML tags
+		%<html>, <head>, <title>, </title>, <meta, />, </head>, <body>,
+		%<canvas, \/canvas>, <script>, </script>, </body>, </html>, <!, html>, <style>, </style>, ><
+		%},
+		%ndkeywords={
+		%% General
+		%=,
+		%% HTML attributes
+		%charset=, id=, width=, height=,
+		%% CSS properties
+		%border:, transform:, -moz-transform:, transition-duration:, transition-property:, transition-timing-function:
+		%},
+		%morecomment=[s]{<!--}{-->},
+		%tag=[s]
+%}
+%\lstdefinestyle{HTML5}{
+	%language=HTML5,
+%}
+
+
+%\lstset{
+	%basicstyle=\footnotesize\ttfamily,
+	%numbers=left,
+	%numberstyle=\tiny\zebra{green!07}{white},
+	%frame=tb,
+	%tabsize=4,
+	%columns=fixed,
+	%showstringspaces=false,
+	%showtabs=false,
+	%keepspaces,
+	%commentstyle=\color{red},
+	%stringstyle=\color{orange},
+	%extendedchars=true,
+	%literate={á}{{\'a}}1
+	%{é}{{\'e}}1
+	%%{í}{{\'{\i}}}1
+	%{í}{{\'i}}1
+	%{ó}{{\'o}}1
+	%{ú}{{\'u}}1
+	%{Á}{{\'A}}1
+	%{É}{{\'E}}1
+	%{Í}{{\'I}}1
+	%{Ó}{{\'O}}1
+	%{Ú}{{\'U}}1
+	%%{ü}{{\"u}}1
+	%%{Ü}{{\"U}}1
+	%{ñ}{{\~n}}1
+	%{Ñ}{{\~N}}1
+	%{¿}{{?``}}1
+	%{¡}{{!``}}1,
+	%keywordstyle=\color{blue}\bfseries
+%}
+
+
+
+%\lstdefinestyle{file}{
+	%basicstyle=\footnotesize\ttfamily,
+	%frame=tblr,
+	%title=\lstname
+%}
+
+
+
+
+%atm general file listing with
+%\lstinputlisting[style=file]{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%		END CURRENT DOCUMENT CONF		%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\author{
+	Andrés Santiago Gómez Vidal
+		\\
+		\textit{andressantiago.gomez@}			%TODO
+}
+
+\title{}
+\date{\today}
+
+
+\makeatletter
+\hypersetup{pdftitle={\@title},pdfauthor={\@author}}
+\makeatother
+
+
+
+\begin{document}
+
+\maketitle
+\pagenumbering{gobble}		%gobble=no numbers, arabic=arabic numbers, roman=roman numbers
+\newpage
+
+\pagenumbering{arabic}		%gobble=no numbers, arabic=arabic numbers, roman=roman numbers
+\tableofcontents
+\newpage
+
+
+
+
+
+\section{}
+
+
+
+%\subsection{}
+%\subsubsection{}
+
+%\paragraph{}
+%\subparagraph{}
+
+
+
+%\section{Bibliografía}
+%\printbibliography[type=book,heading=subbibliography,title={Libros}]
+%\printbibliography[type=article,heading=subbibliography,title={Artículos}]
+%\printbibliography[type=online,heading=subbibliography,title={Referencias web}]
+%\printbibliography[nottype=book,nottype=online,nottype=article,heading=subbibliography,title={Otras fuentes}]
+
+
+\end{document}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%		STUFF AND EXAMPLES		%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{figure}[H] 	%recommended!
+
+%\begin{figure}		%[h] (here), [t] (top), [b] (bottom), [p] (page): on an extra page, [!] (override): will force the specified location
+	%\includegraphics[width=\linewidth]{}
+	%\caption{}
+	%\label{fig:}
+%\end{figure}
+
+
+%\hfill\break \centerline{$\downarrow$} \hfill\break
+
+
+
+%https://en.wikibooks.org/wiki/LaTeX/Text_Formatting
+	%\linespread{factor}
+
+	%\textsubscript{text}
+	%\textsuperscript{text}
+
+	%\begin{doublespace}		\end{doublespace}
+	%\begin{spacing}{2.5}		\end{spacing}
+
+	%\hfill		%You can insert a horizontal stretched space with \hfill in a line so that the rest gets "pushed" toward the right margin
+	%\vfill		%Similarly you can insert vertical stretched space with \vfill
+
+	%\mbox{text}		%One or more words can be kept together on the one line
+	%\fbox is similar to \mbox, but in addition there will be a visible box drawn around the content
+
+	%\usepackage{setspace}
+		%\singlespacing
+		%\onehalfspacing
+		%\doublespacing
+		%\setstretch{1.1}
+
+	%\ldots		%You cannot enter ‘ellipsis’=... by just typing three dots, as the spacing would be wrong. Instead, there is that special command
+
+	%Words that use slash marks, such as "input/output" should be typeset as "input\slash output", which allow the line to "break" after the slash mark (if needed). The use of the / character in LaTeX should be restricted to units, such as "mm/year", which should not be broken over multiple lines
+
+	%latex gives formating trouble with character -
+		%To avoid hyphenation altogether, the penalty for hyphenation can be set to an extreme value:	\hyphenpenalty=100000
+		%LaTeX knows four kinds of dashes: a hyphen (-), en dash (–), em dash (—), or a minus sign (−). You can access three of them with different numbers of consecutive dashes. The fourth sign is actually not a dash at all—it is the mathematical minus sign
+			%Hyphen: daughter-in-law, X-rated\\
+			%En dash: pages 13--67\\
+			%Em dash: yes---or no? \\
+			%Minus sign: $0$, $1$ and $-1$
+	%With spanish babel:
+		%Sometimes for formatting reasons some words have to be broken up in syllables separated by a - (hyphen) to continue the word in a new line. For example, matemáticas could become mate-máticas. The package babel, whose usage was described in the previous section, usually does a good job breaking up the words correctly, but if this is not the case you can use a couple of commands in your preamble.
+
+		 %\usepackage{hyphenat}
+		 %\hyphenation{mate-máti-cas recu-perar}
+
+		%The first command will import the package hyphenat and the second line is a list of space-separated words with defined hyphenation rules. On the other side, if you want a word not to be broken automatically, use the {\nobreak word} command within your document
+
+
+%Quotes commands		%https://es.sharelatex.com/learn/Typesetting_quotations
+
+
+
+
+%http://www.ottobib.com/
+
+
+%https://tex.stackexchange.com/questions/33967/highlighting-extremal-values-in-table

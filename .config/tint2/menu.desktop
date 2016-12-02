@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+
+Name=Menu
+Name[en_GB]=Display menu
+Name[es]=Muestra el menú
+
+Comment=Display openbox menu
+Exec=xdotool key super+l
+Icon=open-menu.png
+Terminal=false
+Categories=Settings;DesktopSettings;

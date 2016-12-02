@@ -1,0 +1,6 @@
+remove Lock = Caps_Lock
+keysym Caps_Lock = Escape
+keysym Scroll_Lock = Caps_Lock
+add Lock = Caps_Lock
+
+!reset with setxkbmap -layout <layout-code> 	in my case es so			setxkbmap -layout es

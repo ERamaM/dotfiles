@@ -1,0 +1,5 @@
+J		forw-line 10
+K		back-line 10
+^j		forw-screen
+^k		back-screen
+ \		forw-search

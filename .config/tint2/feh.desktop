@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+
+Name=Feh
+Name[en_GB]=Change Wallpaper
+Name[es]=Change Wallpaper
+
+Comment=Script to change the wallpaper with feh
+
+Exec=~/.scripts/feh.sh
+Icon=preferences-desktop-wallpaper.png
+Terminal=false
+Categories=Settings;DesktopSettings;

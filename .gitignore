@@ -1,0 +1,7 @@
+.vim/bundle
+openbox/menu.xml*
+caja/desktop-metadata
+.scripts/*.log
+.scripts/zzz_private/
+.scripts/back*
+.scripts/excludes/

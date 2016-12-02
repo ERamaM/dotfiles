@@ -1,0 +1,87 @@
+conky.config = {
+	background = true,
+	double_buffer = true,
+
+	alignment = 'bottom_right',
+
+	border_width = 0,
+	cpu_avg_samples = 2,
+	default_color = white,
+	default_outline_color = 'white',
+	default_shade_color = 'white',
+	draw_borders = false,
+	draw_graph_borders = true,
+	draw_outline = false,
+	draw_shades = false,
+
+	gap_x = 0,
+	gap_y = 0,
+	net_avg_samples = 2,
+	no_buffers = true,
+	out_to_console = false,
+	out_to_stderr = false,
+	extra_newline = false,
+
+	own_window = true,
+	own_window_type = 'normal',
+	own_window_transparent = true,
+	own_window_colour = '000000',
+	own_window_argb_visual = false,
+	own_window_argb_value = 0,
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+
+	stippled_borders = 0,
+	update_interval = 1.5,
+	uppercase = false,
+	use_spacer = 'none',
+
+	show_graph_scale = false,
+	show_graph_range = false,
+
+	use_xft = true,
+	xftalpha = 0.1,
+	font = 'Droid Sans:size=14',
+	override_utf8_locale = true,
+	color0 = 'white',
+	color1 = 'EAEAEA',
+	color2 = 'FFA300',
+	color3 = 'grey',
+	color4 = 'yellow',
+	color5 = 'red'
+}
+
+conky.text = [[			${color0}$uptime_short ${alignr}${loadavg}
+	${color2}C ${if_match ${execi 3 sensors| awk '$1=="Core" {print $3}'| awk -F "." 'NR==1 {gsub("+",""); print $1}'}>55}${color5}${else}${color0}${endif}${execi 3 sensors| awk '$1=="Core" {print $3}'| awk -F "." 'NR==1 {gsub("+",""); print $1}'} ${if_match ${execi 3 sensors| awk '$1=="Core" {print $3}'| awk -F "." 'NR==2 {gsub("+",""); print $1}'}>55}${color5}${else}${color0}${endif}${execi 3 sensors| awk '$1=="Core" {print $3}'| awk -F "." 'NR==2 {gsub("+",""); print $1}'} ${if_match ${execi 3 sensors| awk '$1=="Core" {print $3}'| awk -F "." 'NR==3 {gsub("+",""); print $1}'}>55}${color5}${else}${color0}${endif}${execi 3 sensors| awk '$1=="Core" {print $3}'| awk -F "." 'NR==3 {gsub("+",""); print $1}'} ${if_match ${execi 3 sensors| awk '$1=="Core" {print $3}'| awk -F "." 'NR==4 {gsub("+",""); print $1}'}>55}${color5}${else}${color0}${endif}${execi 3 sensors| awk '$1=="Core" {print $3}'| awk -F "." 'NR==4 {gsub("+",""); print $1}'} ${alignr}${color2}G ${if_match ${execi 3 nvidia-settings -q GPUCoreTemp 2> /dev/null|awk '$2 ~ /GPUCoreTemp/ {print substr($NF,0,length($NF)-1)}'|tail -1}>85}${color5}${else}${color0}${endif}${execi 3 nvidia-settings -q GPUCoreTemp 2> /dev/null|awk '$2 ~ /GPUCoreTemp/ {print substr($NF,0,length($NF)-1)}'|tail -1} ${color0}${execi 5 nvidia-settings -q [gpu:0]/UsedDedicatedGPUMemory -t 2> /dev/null}MiB
+
+	${cpugraph 100,}
+	${if_match ${cpu cpu1}>75}${color5}${else}${if_match ${cpu cpu1}>30}${color4}${else}${color0}${endif}${endif}${cpubar cpu1 5,}
+	${if_match ${cpu cpu2}>75}${color5}${else}${if_match ${cpu cpu2}>30}${color4}${else}${color0}${endif}${endif}${cpubar cpu2 5,}
+	${if_match ${cpu cpu3}>75}${color5}${else}${if_match ${cpu cpu3}>30}${color4}${else}${color0}${endif}${endif}${cpubar cpu3 5,}
+	${if_match ${cpu cpu4}>75}${color5}${else}${if_match ${cpu cpu4}>30}${color4}${else}${color0}${endif}${endif}${cpubar cpu4 5,}
+	${color0}${top name 1} ${alignr}${top cpu 1}%
+	${color0}${top name 2} ${alignr}${top cpu 2}%
+	${color0}${top name 3} ${alignr}${top cpu 3}%
+	${color0}${top name 4} ${alignr}${top cpu 4}%
+	${color0}${top name 5} ${alignr}${top cpu 5}%
+	${color0}${top name 6} ${alignr}${top cpu 6}%
+	${color0}${top name 7} ${alignr}${top cpu 7}%
+	${color0}${top name 8} ${alignr}${top cpu 8}%
+	${color0}${top name 9} ${alignr}${top cpu 9}%
+
+	${color2}B${color0}${buffers} ${color2}C${color0}${cached} ${color2}U${color0}${mem}
+	${membar 5,}
+	${color0}${top_mem name 1} ${alignr}${top_mem mem_res 1}
+	${color0}${top_mem name 2} ${alignr}${top_mem mem_res 2}
+	${color0}${top_mem name 3} ${alignr}${top_mem mem_res 3}
+	${color0}${top_mem name 4} ${alignr}${top_mem mem_res 4}
+	${color0}${top_mem name 5} ${alignr}${top_mem mem_res 5}
+	${color0}${top_mem name 6} ${alignr}${top_mem mem_res 6}
+	${color0}${top_mem name 7} ${alignr}${top_mem mem_res 7}
+	${color0}${top_mem name 8} ${alignr}${top_mem mem_res 8}
+	${color0}${top_mem name 9} ${alignr}${top_mem mem_res 9}
+
+	${if_up eth0}${color2}D ${color0}${downspeedf eth0}KiB/s ${alignr}${color3}T: ${color0}${totaldown eth0}${else}${if_up eno1}${color2}D ${color0}${downspeedf eno1}KiB/s ${alignr}${color3}T: ${color0}${totaldown eno1}${else}${if_up wlan0}${color2}D ${color0}${downspeedf wlan0}KiB/s ${alignr}${color3}T: ${color0}${totaldown wlan0}${endif}${endif}${endif}
+	${if_up eth0}${downspeedgraph eth0 70,}${else}${if_up eno1}${downspeedgraph eno1 70,}${else}${if_up wlan0}${downspeedgraph wlan0 70,}${endif}${endif}${endif}
+
+	${if_up eth0}${color2}U ${color0}${upspeedf eth0}KiB/s ${alignr}${color3}T: ${color0}${totalup eth0}${else}${if_up eno1}${color2}U ${color0}${upspeedf eno1}KiB/s ${alignr}${color3}T: ${color0}${totalup eno1}${else}${if_up wlan0}${color2}U ${color0}${upspeedf wlan0}KiB/s ${alignr}${color3}T: ${color0}${totalup wlan0}${endif}${endif}${endif}
+	${if_up eth0}${upspeedgraph eth0 70,}${else}${if_up eno1}${upspeedgraph eno1 70,}${else}${if_up wlan0}${upspeedgraph wlan0 70,}${endif}${endif}${endif}			]]

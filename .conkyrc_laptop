@@ -1,0 +1,87 @@
+background yes
+double_buffer yes
+
+alignment bottom_right
+
+border_width 0
+cpu_avg_samples 2
+default_color white
+default_outline_color white
+default_shade_color white
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+
+gap_x 0
+gap_y 0
+net_avg_samples 2
+no_buffers yes
+out_to_console no
+out_to_stderr no
+extra_newline no
+
+own_window yes
+own_window_type normal
+own_window_transparent yes
+own_window_colour 000000
+own_window_argb_visual no
+own_window_argb_value 0
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+minimum_size 240 0
+
+stippled_borders 0
+update_interval 1.5
+uppercase no
+use_spacer none
+
+show_graph_scale no
+show_graph_range no
+
+use_xft yes
+xftalpha 0.1
+xftfont Droid Sans:size=11
+override_utf8_locale yes
+color0 white
+color1 EAEAEA
+color2 FFA300
+color3 grey
+color4 yellow
+color5 red
+
+
+TEXT
+${color0}$uptime_short       ${if_match ${execi 30 acpi -V|awk 'NR==1 {gsub(",","");print $4}'|sed 's/\%//g'}>50}${color3}${else}${color5}${endif}${execi 30 acpi -V|awk 'NR==1 {gsub(",","");print $4}'}${alignr}${color0}${loadavg}
+${color2}C ${if_match ${execi 3 sensors| awk '$1=="Core" {print $3}'| awk -F "." 'NR==1 {gsub("+",""); print $1}'}>65}${color5}${else}${color0}${endif}${execi 3 sensors| awk '$1=="Core" {print $3}'| awk -F "." 'NR==1 {gsub("+",""); print $1}'} ${if_match ${execi 3 sensors| awk '$1=="Core" {print $3}'| awk -F "." 'NR==2 {gsub("+",""); print $1}'}>65}${color5}${else}${color0}${endif}${execi 3 sensors| awk '$1=="Core" {print $3}'| awk -F "." 'NR==2 {gsub("+",""); print $1}'} ${if_match ${execi 3 sensors| awk '$1=="Core" {print $3}'| awk -F "." 'NR==3 {gsub("+",""); print $1}'}>65}${color5}${else}${color0}${endif}${execi 3 sensors| awk '$1=="Core" {print $3}'| awk -F "." 'NR==3 {gsub("+",""); print $1}'} ${if_match ${execi 3 sensors| awk '$1=="Core" {print $3}'| awk -F "." 'NR==4 {gsub("+",""); print $1}'}>65}${color5}${else}${color0}${endif}${execi 3 sensors| awk '$1=="Core" {print $3}'| awk -F "." 'NR==4 {gsub("+",""); print $1}'} ${alignr}${color2}G ${if_match ${execi 3 nvidia-settings -q GPUCoreTemp 2> /dev/null|awk '$2 ~ /GPUCoreTemp/ {print substr($NF,0,length($NF)-1)}'|tail -1}>85}${color5}${else}${color0}${endif}${execi 3 nvidia-settings -q GPUCoreTemp 2> /dev/null|awk '$2 ~ /GPUCoreTemp/ {print substr($NF,0,length($NF)-1)}'|tail -1} ${color0}${execi 5 nvidia-settings -q [gpu:0]/UsedDedicatedGPUMemory -t 2> /dev/null}MiB
+
+${cpugraph 20,}
+${if_match ${cpu cpu1}>75}${color5}${else}${if_match ${cpu cpu1}>30}${color4}${else}${color0}${endif}${endif}${cpubar cpu1 5,}
+${if_match ${cpu cpu2}>75}${color5}${else}${if_match ${cpu cpu2}>30}${color4}${else}${color0}${endif}${endif}${cpubar cpu2 5,}
+${if_match ${cpu cpu3}>75}${color5}${else}${if_match ${cpu cpu3}>30}${color4}${else}${color0}${endif}${endif}${cpubar cpu3 5,}
+${if_match ${cpu cpu4}>75}${color5}${else}${if_match ${cpu cpu4}>30}${color4}${else}${color0}${endif}${endif}${cpubar cpu4 5,}
+${color0}${top name 1} ${alignr}${top cpu 1}%
+${top name 2} ${alignr}${top cpu 2}%
+${top name 3} ${alignr}${top cpu 3}%
+${top name 4} ${alignr}${top cpu 4}%
+${top name 5} ${alignr}${top cpu 5}%
+
+${color2}B${color0}${buffers}     ${color2}C${color0}${cached}${alignr}${color2}U${color0}${mem}
+${membar 5,}
+${top_mem name 1} ${alignr}${top_mem mem_res 1}
+${top_mem name 2} ${alignr}${top_mem mem_res 2}
+${top_mem name 3} ${alignr}${top_mem mem_res 3}
+${top_mem name 4} ${alignr}${top_mem mem_res 4}
+${top_mem name 5} ${alignr}${top_mem mem_res 5}
+
+${if_up eth0}${color2}D ${color0}${downspeedf eth0}KiB/s ${alignr}${color3}T: ${color0}${totaldown eth0}
+${downspeedgraph eth0 20,}
+
+${color2}U ${color0}${upspeedf eth0}KiB/s ${alignr}${color3}T: ${color0}${totalup eth0}
+${upspeedgraph eth0 20,}${endif}
+
+${if_up wlan0}${color2}D ${color0}${downspeedf wlan0}KiB/s ${alignr}${color3}T: ${color0}${totaldown wlan0}
+${downspeedgraph wlan0 20,}
+
+${color2}U ${color0}${upspeedf wlan0}KiB/s ${alignr}${color3}T: ${color0}${totalup wlan0}
+${upspeedgraph wlan0 20,}${endif}

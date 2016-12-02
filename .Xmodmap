@@ -1,0 +1,8 @@
+remove Lock = Caps_Lock
+keysym Caps_Lock = Escape
+add Lock = Caps_Lock
+
+keycode 118 = F13 F13 F13
+keycode 133 = F14 F14 F14
+
+!reset with setxkbmap -layout <layout-code> 	in my case es so			setxkbmap -layout es
