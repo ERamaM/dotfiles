@@ -326,6 +326,13 @@ nnoremap <C-l> J
 vnoremap <C-l> J
 
 
+"actually selecting only 1 character
+"subs all selected characters to its spanish special version, respecting case
+"g flag=all, no question
+"e flag=ignore errors
+"\%V for only selection instead of whole line
+nmap <C-i> :set ignorecase!<CR>v:s/\%VA/Á/ge<CR>gv:s/\%VE/É/ge<CR>gv:s/\%VI/Í/ge<CR>gv:s/\%VO/Ó/ge<CR>gv:s/\%VU/Ú/ge<CR>:s/\%Va/á/ge<CR>gv:s/\%Ve/é/ge<CR>gv:s/\%Vi/í/ge<CR>gv:s/\%Vo/ó/ge<CR>gv:s/\%Vu/ú/ge<CR>:set ignorecase!<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -645,7 +652,7 @@ let g:airline_section_c="%<%f%m                   %{strftime('%Y_%m_%d--%H:%M',g
 "let g:airline_section_z=airline#section#create_right(['%l','%c'])
 "%3p%% %#__accent_bold#%{g:airline_symbols.linenr}%#__accent_bold#%4l%#__restore__#%#__restore__#%#__accent_bold#%#__accent_bold#/%L%{g:airline_symbols.maxlinenr}%#__restore__#%#__restore__# :%3v
 
-let g:airline_section_z="%p%% %5l/%L %3v/%{strlen(getline('.'))}"
+let g:airline_section_z="%p%% %5l|%L %3v_%{strdisplaywidth(getline('.'))}"
 
 " remove separators
 let g:airline_left_sep=''

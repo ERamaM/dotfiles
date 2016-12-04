@@ -249,7 +249,22 @@
 		</action>
 		<action name="GrowtoEdgeSouth"/>
     </keybind>
-
+	<keybind key="W-Left">
+		<action name="UnmaximizeFull"/>
+		<action name="MoveResizeTo">
+		  <x>0</x>
+		  <y>0</y>
+		  <width>50%</width>
+		</action>
+	</keybind>
+	<keybind key="W-Right">
+		<action name="UnmaximizeFull"/>
+		<action name="MoveResizeTo">
+		  <x>1/2</x>
+		  <y>0</y>
+		  <width>50%</width>
+		</action>
+	</keybind>
 
     <keybind key="S-A-Left">
       <action name="SendToDesktop">
@@ -286,32 +301,45 @@
     <!--</keybind>-->
     <!-- Keybindings for windows -->
 
-    <keybind key="A-F3">
-      <action name="Iconify"/>
-    </keybind>
-    <keybind key="A-F4">
-      <action name="Close"/>
-    </keybind>
-    <keybind key="A-F10">
-      <action name="ToggleMaximize"/>
-    </keybind>
-    <keybind key="A-F11">
-      <action name="ToggleFullscreen"/>
-    </keybind>
+	<keybind key="A-F1">
+		<action name="ToggleFullscreen"/>
+	</keybind>
+	<keybind key="A-F2">
+		<action name="Execute">
+			<command>gmrun</command>
+		</action>
+	</keybind>
+	<keybind key="A-F3">
+		<action name="Iconify"/>
+	</keybind>
+	<keybind key="A-F4">
+		<action name="Close"/>
+	</keybind>
+	<keybind key="A-F10">
+		<action name="ToggleMaximize"/>
+	</keybind>
+	<keybind key="A-F11">
+		<action name="ToggleFullscreen"/>
+	</keybind>
 
-	<keybind key="Super-1">
+	<keybind key="W-1">
 	  <action name="ToggleFullscreen"/>
 	</keybind>
-	<keybind key="Super-3">
+	<keybind key="W-2">
+		<action name="Execute">
+			<command>gmrun</command>
+		</action>
+	</keybind>
+	<keybind key="W-3">
 	  <action name="Iconify"/>
 	</keybind>
-	<keybind key="Super-4">
+	<keybind key="W-4">
 	  <action name="Close"/>
 	</keybind>
-	<keybind key="Super-5">
+	<keybind key="W-5">
 	  <action name="ToggleMaximize"/>
 	</keybind>
-	<keybind key="Super-0">
+	<keybind key="W-0">
 	  <action name="ToggleMaximize"/>
 	</keybind>
 
@@ -442,16 +470,6 @@
         <command>xset dpms force off</command>
       </action>
     </keybind>
-    <keybind key="A-F2">
-      <action name="Execute">
-        <command>gmrun</command>
-      </action>
-    </keybind>
-    <keybind key="Super-2">
-      <action name="Execute">
-        <command>gmrun</command>
-      </action>
-	</keybind>
     <keybind key="Print">
       <action name="Execute">
 		<command>sh ~/.config/openbox/gnome-screenshot.sh</command>
