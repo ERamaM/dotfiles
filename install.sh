@@ -76,7 +76,6 @@ if [ -n "$fun" ]; then
 	$fun "$ori"/.licenses "$dest"/.licenses
 	$fun "$ori"/.qjoypad3 "$dest"/.qjoypad3
 	$fun "$ori"/.selected_editor "$dest"/.selected_editor
-	$fun "$ori"/.tmux.conf "$dest"/.tmux.conf
 	$fun "$ori"/.xinitrc "$dest"/.xinitrc
 	$fun "$ori"/.Xmodmap "$dest"/.Xmodmap
 

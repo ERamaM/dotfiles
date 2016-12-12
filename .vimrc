@@ -109,7 +109,8 @@ nmap yu yg$
 "copy
 "vnoremap <C-c> "+y
 "y/p and clipboard sharing, shared paste!
-set clipboard=unnamedplus
+"set clipboard=unnamedplus
+set clipboard^=unnamed,unnamedplus
 "text copied in vim is shared with clipboard now
 set go+=a
 
@@ -119,7 +120,7 @@ set go+=a
 "nnoremap <Esc> i
 
 "noremap º %
-map º %
+nmap º %
 "nnoremap c <Nop>
 
 " :W sudo saves the file
@@ -140,18 +141,24 @@ nmap D "_d
 vmap D "_d
 nmap <leader>d "_d
 vmap <leader>d "_d
+
 "delete current selection into 'black hole register' and paste
 nmap <C-p> V"_dP
-vmap <C-p> "_dP
-"vmap <C-S-p> "_dP
+function! Paste_black_register()
+	normal! gv"_d
+	if col(".") == col("$")-1
+		normal! p
+	else
+		normal! P
+	endif
+endfunction
+vmap <C-p> :call Paste_black_register()<CR>
 
 "paste in new line
 nmap = o<Esc>"+p
 "and with a blank line between
-nmap ? o<Cr><Esc>"+p
+"nmap ? o<Cr><Esc>"+p
 
-map <C-h> b
-map <C-l> e
 
 nmap <C-u> yyp
 
@@ -320,10 +327,8 @@ nnoremap <CR> o
 
 
 "replace all line jumps with space
-"nmap <C-l> :%s/\n/ /g<cr>
-"vmap <C-l> :s/\n/ /g<cr>
-nnoremap <C-l> J
-vnoremap <C-l> J
+nnoremap <A-l> J
+vnoremap <A-l> J
 
 
 "actually selecting only 1 character
@@ -331,7 +336,8 @@ vnoremap <C-l> J
 "g flag=all, no question
 "e flag=ignore errors
 "\%V for only selection instead of whole line
-nmap <C-i> :set ignorecase!<CR>v:s/\%VA/Á/ge<CR>gv:s/\%VE/É/ge<CR>gv:s/\%VI/Í/ge<CR>gv:s/\%VO/Ó/ge<CR>gv:s/\%VU/Ú/ge<CR>:s/\%Va/á/ge<CR>gv:s/\%Ve/é/ge<CR>gv:s/\%Vi/í/ge<CR>gv:s/\%Vo/ó/ge<CR>gv:s/\%Vu/ú/ge<CR>:set ignorecase!<CR>
+nnoremap <C-i> :set ignorecase!<CR>v:s/\%VA/Á/ge<CR>gv:s/\%VE/É/ge<CR>gv:s/\%VI/Í/ge<CR>gv:s/\%VO/Ó/ge<CR>gv:s/\%VU/Ú/ge<CR>:s/\%Va/á/ge<CR>gv:s/\%Ve/é/ge<CR>gv:s/\%Vi/í/ge<CR>gv:s/\%Vo/ó/ge<CR>gv:s/\%Vu/ú/ge<CR>:set ignorecase!<CR>
+vnoremap <C-i> <Esc>:set ignorecase!<CR>gv:s/\%VA/Á/ge<CR>gv:s/\%VE/É/ge<CR>gv:s/\%VI/Í/ge<CR>gv:s/\%VO/Ó/ge<CR>gv:s/\%VU/Ú/ge<CR>:s/\%Va/á/ge<CR>gv:s/\%Ve/é/ge<CR>gv:s/\%Vi/í/ge<CR>gv:s/\%Vo/ó/ge<CR>gv:s/\%Vu/ú/ge<CR>:set ignorecase!<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -415,8 +421,10 @@ set tm=500
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
-"syntax enable
 syntax on
+"syntax enable
+set background=dark
+colorscheme desert
 
 
 "shell syntax hl for this file
@@ -428,8 +436,6 @@ syntax on
 
 
 
-colorscheme desert
-set background=dark
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -575,8 +581,7 @@ noremap H 10h
 noremap L 10l
 
 "move MORE
-noremap <C-j> <PageDown>
-noremap <C-k> <PageUp>
+nmap H %
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 "nnoremap <space> /
@@ -879,7 +884,7 @@ let g:ycm_confirm_extra_conf = 0
 "let g:ycm_key_invoke_completion = '<C-Space>'
 
 
-nnoremap <leader>cr :YcmForceCompileAndDiagnostics <CR>
+"nnoremap <leader>cr :YcmForceCompileAndDiagnostics <CR>
 
 
 "txt completion, hello?
