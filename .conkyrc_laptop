@@ -84,4 +84,8 @@ ${if_up wlan0}${color2}D ${color0}${downspeedf wlan0}KiB/s ${alignr}${color3}T: 
 ${downspeedgraph wlan0 20,}
 
 ${color2}U ${color0}${upspeedf wlan0}KiB/s ${alignr}${color3}T: ${color0}${totalup wlan0}
-${upspeedgraph wlan0 20,}${endif}
+${upspeedgraph wlan0 20,}${else}${color2}D ${color0}${downspeedf wlp5s0}KiB/s ${alignr}${color3}T: ${color0}${totaldown wlp5s0}
+${downspeedgraph wlp5s0 20,}
+
+${color2}U ${color0}${upspeedf wlp5s0}KiB/s ${alignr}${color3}T: ${color0}${totalup wlp5s0}
+${upspeedgraph wlp5s0 20,}${endif}

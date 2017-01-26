@@ -5,3 +5,5 @@ caja/desktop-metadata
 .scripts/zzz_private/
 .scripts/back*
 .scripts/excludes/
+functions_file.sh
+functions_min.sh

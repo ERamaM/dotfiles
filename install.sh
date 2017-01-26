@@ -91,8 +91,6 @@ if [ -n "$fun" ]; then
 	$fun "$ori"/.vimrc "$dest"/.vimrc
 	$fun "$ori"/.vimrc "$dest"/.nvimrc
 	$fun "$ori"/.vimrc "$dest"/.config/nvim/init.vim
-	$fun "$ori"/.vim "$dest"/.vim
-	$fun "$ori"/.vim "$dest"/.nvim
 
 	echo "Installing vundle for vim"
 	git_clone_download_f https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim

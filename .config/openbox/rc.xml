@@ -203,69 +203,50 @@
         <wrap>yes</wrap>
       </action>
     </keybind>
-
-
     <keybind key="C-S-Right">
-		<action name="If">
-			<query>
-				<maximized>yes</maximized>
-			</query>
-			<then>
-				<action name="ToggleMaximize"/>
-			</then>
-		</action>
-		<action name="GrowtoEdgeEast"/>
-	</keybind>
-	<keybind key="C-S-Up">
-		<action name="If">
-			<query>
-				<maximized>yes</maximized>
-			</query>
-		<then>
-			<action name="ToggleMaximize"/>
-		</then>
-		</action>
-		<action name="GrowtoEdgeNorth"/>
-	</keybind>
-	<keybind key="C-S-Left">
-		<action name="If">
-			<query>
-				<maximized>yes</maximized>
-			</query>
-		<then>
-			<action name="ToggleMaximize"/>
-		</then>
-		</action>
-		<action name="GrowtoEdgeWest"/>
-	</keybind>
-	<keybind key="C-S-Down">
-		<action name="If">
-			<query>
-				<maximized>yes</maximized>
-			</query>
-		<then>
-			<action name="ToggleMaximize"/>
-		</then>
-		</action>
-		<action name="GrowtoEdgeSouth"/>
+      <action name="If">
+        <query>
+          <maximized>yes</maximized>
+        </query>
+        <then>
+          <action name="ToggleMaximize"/>
+        </then>
+      </action>
+      <action name="GrowtoEdgeEast"/>
     </keybind>
-	<keybind key="W-Left">
-		<action name="UnmaximizeFull"/>
-		<action name="MoveResizeTo">
-		  <x>0</x>
-		  <y>0</y>
-		  <width>50%</width>
-		</action>
-	</keybind>
-	<keybind key="W-Right">
-		<action name="UnmaximizeFull"/>
-		<action name="MoveResizeTo">
-		  <x>1/2</x>
-		  <y>0</y>
-		  <width>50%</width>
-		</action>
-	</keybind>
-
+    <keybind key="C-S-Up">
+      <action name="If">
+        <query>
+          <maximized>yes</maximized>
+        </query>
+        <then>
+          <action name="ToggleMaximize"/>
+        </then>
+      </action>
+      <action name="GrowtoEdgeNorth"/>
+    </keybind>
+    <keybind key="C-S-Left">
+      <action name="If">
+        <query>
+          <maximized>yes</maximized>
+        </query>
+        <then>
+          <action name="ToggleMaximize"/>
+        </then>
+      </action>
+      <action name="GrowtoEdgeWest"/>
+    </keybind>
+    <keybind key="C-S-Down">
+      <action name="If">
+        <query>
+          <maximized>yes</maximized>
+        </query>
+        <then>
+          <action name="ToggleMaximize"/>
+        </then>
+      </action>
+      <action name="GrowtoEdgeSouth"/>
+    </keybind>
     <keybind key="S-A-Left">
       <action name="SendToDesktop">
         <to>left</to>
@@ -300,49 +281,33 @@
     <!--<action name="ToggleShowDesktop"/>-->
     <!--</keybind>-->
     <!-- Keybindings for windows -->
-
-	<keybind key="A-F1">
-		<action name="ToggleFullscreen"/>
-	</keybind>
-	<keybind key="A-F2">
-		<action name="Execute">
-			<command>gmrun</command>
-		</action>
-	</keybind>
-	<keybind key="A-F3">
-		<action name="Iconify"/>
-	</keybind>
-	<keybind key="A-F4">
-		<action name="Close"/>
-	</keybind>
-	<keybind key="A-F10">
-		<action name="ToggleMaximize"/>
-	</keybind>
-	<keybind key="A-F11">
-		<action name="ToggleFullscreen"/>
-	</keybind>
-
-	<keybind key="W-1">
-	  <action name="ToggleFullscreen"/>
-	</keybind>
-	<keybind key="W-2">
-		<action name="Execute">
-			<command>gmrun</command>
-		</action>
-	</keybind>
-	<keybind key="W-3">
-	  <action name="Iconify"/>
-	</keybind>
-	<keybind key="W-4">
-	  <action name="Close"/>
-	</keybind>
-	<keybind key="W-5">
-	  <action name="ToggleMaximize"/>
-	</keybind>
-	<keybind key="W-0">
-	  <action name="ToggleMaximize"/>
-	</keybind>
-
+    <keybind key="A-F3">
+      <action name="Iconify"/>
+    </keybind>
+    <keybind key="A-F4">
+      <action name="Close"/>
+    </keybind>
+    <keybind key="A-F10">
+      <action name="ToggleMaximize"/>
+    </keybind>
+    <keybind key="A-F11">
+      <action name="ToggleFullscreen"/>
+    </keybind>
+    <keybind key="Super-1">
+      <action name="ToggleFullscreen"/>
+    </keybind>
+    <keybind key="Super-3">
+      <action name="Iconify"/>
+    </keybind>
+    <keybind key="Super-4">
+      <action name="Close"/>
+    </keybind>
+    <keybind key="Super-5">
+      <action name="ToggleMaximize"/>
+    </keybind>
+    <keybind key="Super-0">
+      <action name="ToggleMaximize"/>
+    </keybind>
     <!--<keybind key="A-Escape">-->
     <!--<action name="Lower"/>-->
     <!--<action name="FocusToBottom"/>-->
@@ -452,17 +417,17 @@
     <!--</keybind>-->
     <keybind key="XF86AudioMute">
       <action name="Execute">
-        <command>amixer -D pulse sset Master 0%</command>
+        <command>amixer -q sset Master 0%</command>
       </action>
     </keybind>
     <keybind key="XF86AudioLowerVolume">
       <action name="Execute">
-        <command>amixer -D pulse sset Master 10%-</command>
+        <command>amixer -q sset Master 5%-</command>
       </action>
     </keybind>
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
-        <command>amixer -D pulse sset Master 10%+</command>
+        <command>amixer -q sset Master 5%+</command>
       </action>
     </keybind>
     <keybind key="XF86WLAN">
@@ -470,9 +435,29 @@
         <command>xset dpms force off</command>
       </action>
     </keybind>
+    <keybind key="XF86MonBrightnessUp">
+      <action name="Execute">
+        <command>xbacklight +10</command>
+      </action>
+    </keybind>
+    <keybind key="XF86MonBrightnessDown">
+      <action name="Execute"> 
+        <command>xbacklight -10</command>
+      </action>
+    </keybind>
+    <keybind key="A-F2">
+      <action name="Execute">
+        <command>gmrun</command>
+      </action>
+    </keybind>
+    <keybind key="Super-2">
+      <action name="Execute">
+        <command>gmrun</command>
+      </action>
+    </keybind>
     <keybind key="Print">
       <action name="Execute">
-		<command>sh ~/.config/openbox/gnome-screenshot.sh</command>
+        <command>sh ~/.config/openbox/gnome-screenshot.sh</command>
       </action>
     </keybind>
     <keybind key="A-Print">
@@ -486,32 +471,38 @@
       </action>
     </keybind>
     <keybind key="S-F14">
-      <action name="ShowMenu"><menu>root-menu</menu></action>
+      <action name="ShowMenu">
+        <menu>root-menu</menu>
+      </action>
     </keybind>
     <keybind key="Super_L">
-      <action name="ShowMenu"><menu>root-menu</menu></action>
+      <action name="ShowMenu">
+        <menu>root-menu</menu>
+      </action>
     </keybind>
     <keybind key="Super_R">
-      <action name="ShowMenu"><menu>root-menu</menu></action>
+      <action name="ShowMenu">
+        <menu>root-menu</menu>
+      </action>
     </keybind>
     <!--<keybind key="Super_L">-->
-      <!--<action name="Execute">-->
-        <!--<command>xfce4-popup-whiskermenu</command>-->
-      <!--</action>-->
+    <!--<action name="Execute">-->
+    <!--<command>xfce4-popup-whiskermenu</command>-->
+    <!--</action>-->
     <!--</keybind>-->
     <!--<keybind key="Super_R">-->
-      <!--<action name="Execute">-->
-        <!--<command>xfce4-popup-whiskermenu</command>-->
-      <!--</action>-->
+    <!--<action name="Execute">-->
+    <!--<command>xfce4-popup-whiskermenu</command>-->
+    <!--</action>-->
     <!--</keybind>-->
     <keybind key="F13">
       <action name="Execute">
-		<command>~/.scripts/swap_map.sh</command>
+        <command>~/.scripts/swap_map.sh</command>
       </action>
     </keybind>
     <keybind key="F14">
       <action name="Execute">
-		<command>sh -c echo>/dev/null</command>
+		<command>sh -c echo > /dev/null</command>
       </action>
     </keybind>
     <keybind key="S-A-f">
@@ -529,11 +520,11 @@
         <command>zsh -c browser_manager2</command>
       </action>
     </keybind>
-	<keybind key="C-S-N">
-	  <action name="Execute">
-		<command>zsh -c browser_manager2_private</command>
-	  </action>
-	</keybind>
+    <keybind key="C-S-N">
+      <action name="Execute">
+        <command>zsh -c browser_manager2_private</command>
+      </action>
+    </keybind>
     <keybind key="C-S-F1">
       <action name="Execute">
         <command>zsh -c lock_manager</command>

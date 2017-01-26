@@ -142,11 +142,13 @@ vmap D "_d
 nmap <leader>d "_d
 vmap <leader>d "_d
 
+imap <C-v> <Esc>"+p
+
 "delete current selection into 'black hole register' and paste
 nmap <C-p> V"_dP
 function! Paste_black_register()
 	normal! gv"_d
-	if col(".") == col("$")-1
+	if col(".") == col("$")
 		normal! p
 	else
 		normal! P
@@ -207,16 +209,13 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
 
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
-
 map  <space> <Plug>(easymotion-sn)
 omap <space> <Plug>(easymotion-tn)
 
 
 "old search new maps
-noremap '' n
-noremap ¡¡  N
+noremap <C-n> n
+noremap <C-b> N
 
 
 map n <Plug>(easymotion-next)
@@ -243,24 +242,17 @@ noremap <Leader><Leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/g
 "wordcount
 nmap <C-w> :!texcount %<Cr>
 
-
-"t for 'end of line' instead 'prev char next occurrence' (prefer f instead)
-"noremap t $
-"z for 'start of line' instead ''? nothing i think
 noremap Z 0
 noremap z _
 
 imap <C-a> <Home>
-nmap <C-a> <Home>
+map <C-a> <Home>
 imap <C-e> <End>
-nmap <C-e> <End>
-
+map <C-e> <End>
 
 "move to previous change
-"noremap g. g;
 noremap <Left> g;
 noremap <Right> g,
-
 
 "move backwards to the next section end
 "noremap ,,b []
@@ -271,7 +263,6 @@ noremap <leader>e []
 "move forward to the next section end
 "noremap ,,f ][
 noremap <leader>f ][
-
 
 "move to the beginning of the block
 noremap <leader>b [{
@@ -299,25 +290,10 @@ noremap + `
 vnoremap <C-g> Y<CR>gv:call NERDComment(0,"toggle")<CR>`<O<Esc>P
 
 
-"move lines around
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-"inoremap <A-j> <Esc>:m .+1<CR>==gi
-"inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
-
-"move in insert mode
-inoremap <A-h> <left>
-inoremap <A-j> <down>
-inoremap <A-k> <up>
-inoremap <A-l> <right>
-
 
 "fast delete words
 inoremap <A-BS> <C-w>
 nnoremap <A-BS> bdw
-
 inoremap <A-Del> <Esc>dwi
 nnoremap <A-Del> dw
 
@@ -327,8 +303,7 @@ nnoremap <CR> o
 
 
 "replace all line jumps with space
-nnoremap <A-l> J
-vnoremap <A-l> J
+nnoremap <leader>l J
 
 
 "actually selecting only 1 character
@@ -336,8 +311,8 @@ vnoremap <A-l> J
 "g flag=all, no question
 "e flag=ignore errors
 "\%V for only selection instead of whole line
-nnoremap <C-i> :set ignorecase!<CR>v:s/\%VA/Á/ge<CR>gv:s/\%VE/É/ge<CR>gv:s/\%VI/Í/ge<CR>gv:s/\%VO/Ó/ge<CR>gv:s/\%VU/Ú/ge<CR>:s/\%Va/á/ge<CR>gv:s/\%Ve/é/ge<CR>gv:s/\%Vi/í/ge<CR>gv:s/\%Vo/ó/ge<CR>gv:s/\%Vu/ú/ge<CR>:set ignorecase!<CR>
-vnoremap <C-i> <Esc>:set ignorecase!<CR>gv:s/\%VA/Á/ge<CR>gv:s/\%VE/É/ge<CR>gv:s/\%VI/Í/ge<CR>gv:s/\%VO/Ó/ge<CR>gv:s/\%VU/Ú/ge<CR>:s/\%Va/á/ge<CR>gv:s/\%Ve/é/ge<CR>gv:s/\%Vi/í/ge<CR>gv:s/\%Vo/ó/ge<CR>gv:s/\%Vu/ú/ge<CR>:set ignorecase!<CR>
+nnoremap <C-i> :set ignorecase!<CR>v:s/\%VN/Ñ/ge<CR>gv:s/\%Vn/ñ/ge<CR>gv:s/\%VA/Á/ge<CR>gv:s/\%VE/É/ge<CR>gv:s/\%VI/Í/ge<CR>gv:s/\%VO/Ó/ge<CR>gv:s/\%VU/Ú/ge<CR>:s/\%Va/á/ge<CR>gv:s/\%Ve/é/ge<CR>gv:s/\%Vi/í/ge<CR>gv:s/\%Vo/ó/ge<CR>gv:s/\%Vu/ú/ge<CR>:set ignorecase!<CR>
+vnoremap <C-i> <Esc>:set ignorecase!<CR>gv:s/\%VN/Ñ/ge<CR>gv:s/\%Vn/ñ/ge<CR>gv:s/\%VA/Á/ge<CR>gv:s/\%VE/É/ge<CR>gv:s/\%VI/Í/ge<CR>gv:s/\%VO/Ó/ge<CR>gv:s/\%VU/Ú/ge<CR>:s/\%Va/á/ge<CR>gv:s/\%Ve/é/ge<CR>gv:s/\%Vi/í/ge<CR>gv:s/\%Vo/ó/ge<CR>gv:s/\%Vu/ú/ge<CR>:set ignorecase!<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -581,7 +556,7 @@ noremap H 10h
 noremap L 10l
 
 "move MORE
-nmap H %
+nmap <c-h> %
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 "nnoremap <space> /
@@ -915,6 +890,21 @@ hi CursorColumn ctermbg=black guibg=black
 
 set timeoutlen=1000
 set ttimeoutlen=0
+
+
+
+
+
+"tmux
+"http://stackoverflow.com/a/29693196
+let tmux_wname=system('tmux display-message -p "#W"')
+autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
+autocmd VimLeave * call system("tmux rename-window ".tmux_wname)
+autocmd BufEnter * let &titlestring = ' ' . expand("%:t")
+set title
+
+
+
 
 
 "STORED REGISTERS
