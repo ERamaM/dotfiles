@@ -9,14 +9,15 @@ if [ -z "$sourced_functions_file" ]; then
 	if [ -s "$shellc_path/functions_file.sh" ]; then
 		. "$shellc_path/functions_file.sh"
 	else
-		wget https://raw.githubusercontent.com/andresgomezvidal/zsh_conf/master/custom/functions_file.sh
-		. functions_file.sh
+		#We need this to properly include (file not found otherwise)
+		wget -P /tmp/ https://raw.githubusercontent.com/andresgomezvidal/zsh_conf/master/custom/functions_file.sh
+		. /tmp/functions_file.sh
 	fi
 	if [ -s "$shellc_path/functions_min.sh" ]; then
 		. "$shellc_path/functions_min.sh"
 	else
-		wget https://raw.githubusercontent.com/andresgomezvidal/zsh_conf/master/custom/functions_min.sh
-		. functions_min.sh
+		wget -P /tmp/ https://raw.githubusercontent.com/andresgomezvidal/zsh_conf/master/custom/functions_min.sh
+		. /tmp/functions_min.sh
 	fi
 fi
 
@@ -52,15 +53,32 @@ echo ""		# (optional) move to a new line
 if ! [[ $REPLY =~ ^[Nn]$ ]]; then
 	tmp=/tmp/gagvdotfiles
 	echo "Downloading repo"
+	#Delete a previous dowloaded gagvdotfiles
+	if [ -d $tmp ]; then
+		rm -rf $tmp
+	fi
+
 	github_clone_donwload_f andresgomezvidal/dotfiles "$tmp"
 	echo "Moving repo"
 	for i in "$tmp"/{,.}*
 	do
-		mv -i "$i" "$ori"
+		#Copy recursive so as not to ask every time to overwrite
+		base=`basename $i`
+		cp -rf "$i" "$ori/$base"
 	done
 fi
 cd "$ori"
 
+#Sometimes the script doesn't include well the functions so we do this hax.
+if [ -n $(type -t ln_cp_bak_question_f) ]; then
+	#Deactivate this to include properly
+	sourced_functions_file=false
+	wget -P /tmp/ https://raw.githubusercontent.com/andresgomezvidal/zsh_conf/master/custom/functions_file.sh
+	. /tmp/functions_file.sh
+	wget -P /tmp/ https://raw.githubusercontent.com/andresgomezvidal/zsh_conf/master/custom/functions_min.sh
+	. /tmp/functions_min.sh
+	sourced_functions_file=true
+fi
 
 ln_cp_bak_question_f
 
